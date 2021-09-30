@@ -15,9 +15,7 @@ object dmPedido: TdmPedido
     ParamData = <
       item
         Name = 'ID'
-        DataType = ftInteger
         ParamType = ptInput
-        Value = Null
       end>
   end
   object qryPedidosGravar: TFDQuery
@@ -53,12 +51,17 @@ object dmPedido: TdmPedido
     Left = 295
     Top = 176
   end
-  object qryPedidosExcluir: TFDQuery
+  object qryPedidosItensExcluir: TFDQuery
     Connection = dmConexao.con
     SQL.Strings = (
-      'select * from clientes')
-    Left = 391
-    Top = 176
+      'delete from pedidos_produtos where pedido_id = :pedido_id')
+    Left = 295
+    Top = 248
+    ParamData = <
+      item
+        Name = 'PEDIDO_ID'
+        ParamType = ptInput
+      end>
   end
   object qryPedidosItensGravar: TFDQuery
     Connection = dmConexao.con
@@ -124,15 +127,13 @@ object dmPedido: TdmPedido
       
         '  FROM pedidos_produtos pp LEFT JOIN produtos p ON p.id = pp.pro' +
         'duto_id'
-      ' WHERE pp.id = :id')
+      ' WHERE pp.pedido_id = :pedido_id')
     Left = 71
     Top = 248
     ParamData = <
       item
-        Name = 'ID'
-        DataType = ftInteger
+        Name = 'PEDIDO_ID'
         ParamType = ptInput
-        Value = Null
       end>
   end
 end

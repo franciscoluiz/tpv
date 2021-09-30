@@ -30,9 +30,9 @@ begin
   if qryProdutosPesquisar.Active then
     qryProdutosPesquisar.Close;
 
-  qryProdutosPesquisar.ParamByName('id').AsInteger := oProduto.Id;
+  qryProdutosPesquisar.ParamByName('id').AsInteger := oProduto.Codigo;
   qryProdutosPesquisar.Open;
-  oProduto.id := qryProdutosPesquisar.FieldByName('id').AsInteger;
+  oProduto.Codigo := qryProdutosPesquisar.FieldByName('id').AsInteger;
   oProduto.Descricao := qryProdutosPesquisar.FieldByName('descricao').AsString;
   oProduto.Preco := qryProdutosPesquisar.FieldByName('preco').AsFloat;
 

@@ -155,6 +155,7 @@ object frmTpv: TfrmTpv
       Margins.Top = 20.000000000000000000
       Margins.Right = 10.000000000000000000
       Margins.Bottom = 10.000000000000000000
+      PopupMenu = popupGrid
       Size.Width = 580.000000000000000000
       Size.Height = 135.000000000000000000
       Size.PlatformDefault = False
@@ -163,7 +164,6 @@ object frmTpv: TfrmTpv
       Options = [AlternatingRowBackground, ColumnResize, ColLines, RowLines, RowSelect, Header]
       OnSelectCell = grpPedidoProdutosSelectCell
       OnGetValue = grpPedidoProdutosGetValue
-      OnCellDblClick = grpPedidoProdutosCellDblClick
       Viewport.Width = 576.000000000000000000
       Viewport.Height = 110.000000000000000000
       object colProdutoId: TIntegerColumn
@@ -429,6 +429,15 @@ object frmTpv: TfrmTpv
       TabOrder = 2
       Text = 'Gravar Pedido'
       OnClick = btnGravarClick
+    end
+  end
+  object popupGrid: TPopupMenu
+    Left = 152
+    Top = 316
+    object mnuProdutoExcluir: TMenuItem
+      ShortCut = 46
+      Text = 'Excluir'
+      OnClick = mnuProdutoExcluirClick
     end
   end
 end
