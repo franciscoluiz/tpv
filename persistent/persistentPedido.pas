@@ -16,7 +16,6 @@ type
     qryPedidosAlterar: TFDQuery;
     qryPedidosItensExcluir: TFDQuery;
     qryPedidosItensGravar: TFDQuery;
-    qryGetLastId: TFDQuery;
     qryPedidosItensPesquisar: TFDQuery;
   public
     procedure Carregar(oPedido: TPedido);

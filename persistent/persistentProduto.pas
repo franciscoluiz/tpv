@@ -25,6 +25,18 @@ uses persistentConexao;
 
 {$R *.dfm}
 
+procedure TdmProduto.Pesquisar(id: integer; var id_retorno: integer);
+begin
+  if qryProdutosPesquisar.Active then
+    qryProdutosPesquisar.Close;
+
+  qryProdutosPesquisar.ParamByName('id').AsInteger := id;
+  qryProdutosPesquisar.Open;
+  id_retorno := qryProdutosPesquisar.FieldByName('id').AsInteger;
+
+  qryProdutosPesquisar.Close;
+end;
+
 procedure TdmProduto.Carregar(oProduto: TProduto);
 begin
   if qryProdutosPesquisar.Active then
@@ -35,18 +47,6 @@ begin
   oProduto.Codigo := qryProdutosPesquisar.FieldByName('id').AsInteger;
   oProduto.Descricao := qryProdutosPesquisar.FieldByName('descricao').AsString;
   oProduto.Preco := qryProdutosPesquisar.FieldByName('preco').AsFloat;
-
-  qryProdutosPesquisar.Close;
-end;
-
-procedure TdmProduto.Pesquisar(id: integer; var id_retorno: integer);
-begin
-  if qryProdutosPesquisar.Active then
-    qryProdutosPesquisar.Close;
-
-  qryProdutosPesquisar.ParamByName('id').AsInteger := id;
-  qryProdutosPesquisar.Open;
-  id_retorno := qryProdutosPesquisar.FieldByName('id').AsInteger;
 
   qryProdutosPesquisar.Close;
 end;

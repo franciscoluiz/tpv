@@ -10,8 +10,8 @@ object dmPedido: TdmPedido
         ' '
       '  FROM pedidos p LEFT JOIN clientes c ON c.id = p.cliente_id '
       ' WHERE p.id = :id')
-    Left = 71
-    Top = 176
+    Left = 63
+    Top = 24
     ParamData = <
       item
         Name = 'ID'
@@ -24,8 +24,8 @@ object dmPedido: TdmPedido
       
         'INSERT INTO pedidos (cliente_id, valortotal, dataemissao) VALUES' +
         ' (:cliente_id, :valortotal, :dataemissao)')
-    Left = 175
-    Top = 176
+    Left = 263
+    Top = 112
     ParamData = <
       item
         Name = 'CLIENTE_ID'
@@ -48,15 +48,15 @@ object dmPedido: TdmPedido
     Connection = dmConexao.con
     SQL.Strings = (
       'select * from clientes')
-    Left = 295
-    Top = 176
+    Left = 359
+    Top = 112
   end
   object qryPedidosItensExcluir: TFDQuery
     Connection = dmConexao.con
     SQL.Strings = (
       'delete from pedidos_produtos where pedido_id = :pedido_id')
-    Left = 295
-    Top = 248
+    Left = 319
+    Top = 224
     ParamData = <
       item
         Name = 'PEDIDO_ID'
@@ -70,8 +70,8 @@ object dmPedido: TdmPedido
         'INSERT INTO pedidos_produtos (pedido_id, produto_id, quantidade,' +
         ' valorunitario, valortotal) VALUES (:pedido_id, :produto_id, :qu' +
         'antidade, :valorunitario, :valortotal)')
-    Left = 175
-    Top = 240
+    Left = 199
+    Top = 224
     ParamData = <
       item
         Name = 'PEDIDO_ID'
@@ -104,20 +104,6 @@ object dmPedido: TdmPedido
         Value = Null
       end>
   end
-  object qryGetLastId: TFDQuery
-    Connection = dmConexao.con
-    SQL.Strings = (
-      'SELECT * FROM pedidos WHERE id = :id')
-    Left = 71
-    Top = 96
-    ParamData = <
-      item
-        Name = 'ID'
-        DataType = ftInteger
-        ParamType = ptInput
-        Value = Null
-      end>
-  end
   object qryPedidosItensPesquisar: TFDQuery
     Connection = dmConexao.con
     SQL.Strings = (
@@ -128,8 +114,8 @@ object dmPedido: TdmPedido
         '  FROM pedidos_produtos pp LEFT JOIN produtos p ON p.id = pp.pro' +
         'duto_id'
       ' WHERE pp.pedido_id = :pedido_id')
-    Left = 71
-    Top = 248
+    Left = 63
+    Top = 88
     ParamData = <
       item
         Name = 'PEDIDO_ID'

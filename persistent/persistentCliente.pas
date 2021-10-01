@@ -25,6 +25,18 @@ uses persistentConexao;
 
 {$R *.dfm}
 
+procedure TdmCliente.Pesquisar(id: integer; var id_retorno: integer);
+begin
+  if qryClientesPesquisar.Active then
+    qryClientesPesquisar.Close;
+
+  qryClientesPesquisar.ParamByName('id').AsInteger := id;
+  qryClientesPesquisar.Open;
+  id_retorno := qryClientesPesquisar.FieldByName('id').AsInteger;
+
+  qryClientesPesquisar.Close;
+end;
+
 procedure TdmCliente.Carregar(oCliente: TCliente);
 begin
   if qryClientesPesquisar.Active then
@@ -36,18 +48,6 @@ begin
   oCliente.Nome := qryClientesPesquisar.FieldByName('nome').AsString;
   oCliente.Cidade := qryClientesPesquisar.FieldByName('cidade').AsString;
   oCliente.UF := qryClientesPesquisar.FieldByName('uf').AsString;
-
-  qryClientesPesquisar.Close;
-end;
-
-procedure TdmCliente.Pesquisar(id: integer; var id_retorno: integer);
-begin
-  if qryClientesPesquisar.Active then
-    qryClientesPesquisar.Close;
-
-  qryClientesPesquisar.ParamByName('id').AsInteger := id;
-  qryClientesPesquisar.Open;
-  id_retorno := qryClientesPesquisar.FieldByName('id').AsInteger;
 
   qryClientesPesquisar.Close;
 end;

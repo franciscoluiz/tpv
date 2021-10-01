@@ -64,11 +64,6 @@ begin
   Result.Assign(Self);
 end;
 
-function TProduto.GetTotal: Double;
-begin
-  Result := FQuantidade * FPreco;
-end;
-
 procedure TProduto.Limpar;
 begin
   FCodigo := 0;
@@ -77,12 +72,33 @@ begin
   FQuantidade := 0;
 end;
 
+function TProduto.GetTotal: Double;
+begin
+  Result := FQuantidade * FPreco;
+end;
+
 { TProdutos }
 
 function TProdutos.Add(const oProduto: TProduto): Integer;
 begin
   Result := inherited Add(oProduto);
   oProduto.Indice := Count;
+end;
+
+procedure TProdutos.Mesclar(oProduto: TProduto);
+var
+  lProduto: TProduto;
+  lIndice: Integer;
+begin
+  for lIndice := 0 to Pred(Count) do
+  begin
+    lProduto := Self[lIndice];
+    if lProduto.Indice = oProduto.Indice then
+    begin
+      lProduto.Assign(oProduto);
+      Break;
+    end;
+  end;
 end;
 
 procedure TProdutos.Excluir(oProduto: TProduto);
@@ -108,22 +124,6 @@ begin
   Result := 0;
   for lProduto in Self do
     Result := Result + lProduto.Total;
-end;
-
-procedure TProdutos.Mesclar(oProduto: TProduto);
-var
-  lProduto: TProduto;
-  lIndice: Integer;
-begin
-  for lIndice := 0 to Pred(Count) do
-  begin
-    lProduto := Self[lIndice];
-    if lProduto.Indice = oProduto.Indice then
-    begin
-      lProduto.Assign(oProduto);
-      Break;
-    end;
-  end;
 end;
 
 end.
